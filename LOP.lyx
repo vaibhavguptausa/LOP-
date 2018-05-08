@@ -1,0 +1,2674 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass book
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter*
+Abstract
+\end_layout
+
+\begin_layout Abstract
+The report considers Peskin's model of pacemaker as network of N integrated
+ and fire oscillators to study the synchronization observed in a network
+ of neurons.
+ Strogatz has proved that a fully connected network of neurons always synchroniz
+es, We aim to study the robustness of networks which are not fully connected.
+ We start with simulating probability of synchronization of a network of
+ some particular number of neurons vs the fraction of synapses present.
+ We then procure critical fractions from these graphs which form the basis
+ of our next result.
+ We observe that the critical fraction varies with number of neurons in
+ the network in the beginning and then becomes saturated.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction:
+\end_layout
+
+\begin_layout Standard
+The synchronization in general is termed as a process wherein different
+ components of a system or of multiple systems reach to a common state.
+ Like any kind of physicsl,chemical or bilogical oscillators, neurons can
+ synchronize and exhibit a collective behavior that is not intrinsic to
+ any individual neuron.
+ Synchronization in neurons occurs when all the neurons start of with different
+ initial conditions i.e different voltages, and as they evolve they reach
+ at a common voltage, after they have synchronized they all have same voltage
+ at a particular point.
+ This can also be termed as a condition where all the neurons fire together.
+\end_layout
+
+\begin_layout Standard
+We will be modelling neural network which closely resemble to pulse coupled
+ oscillator network.In pulse-coupled oscillator (PCO) networks, an oscillator
+ sends a pulse to its neighbors every time it fires.
+ Each receiving oscillator experiences a discrete jump in its phase upon
+ reception of the pulse.
+ In case of neurons there is a jump in voltage value.
+ The state of network varies continuosly with time until any oscillator
+ receives a pulse.
+\end_layout
+
+\begin_layout Standard
+The model used for neurons here is integrated and fire model.
+ Subthreshold behavior of a neuron can be described by equation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathring{V}=b-V$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+b
+\end_layout
+
+\end_inset
+
+ is a constant, the value of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+V
+\end_layout
+
+\end_inset
+
+ changes instantaneously to 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+0
+\end_layout
+
+\end_inset
+
+ when it crosses threshold value.
+\end_layout
+
+\begin_layout Standard
+In this project the main focus was understanding the behaviour of networks
+ of neurons when we start breaking the synapses in the network.
+ I studied the tendency of a network to synchronize with fewer number of
+ synapses.
+ The report will discuss the effect on probability of synchronization of
+ a network from the number of synapses present.
+ It will furthur discuss how critical fraction of a network varies as we
+ change the number of neurons.
+ Critical fraction of a network is the fraction of synapses present vs total
+ number of synapses in the beginning, at which we observe a sharp drop in
+ probability of synchronization.
+\end_layout
+
+\begin_layout Section
+Model of neuron:
+\end_layout
+
+\begin_layout Standard
+We will model the neurons according to following equation, which was proposed
+ by Peskin.The neurons satisfy the following differential equation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+[ 
+\backslash
+frac{dv}{dt}= S-Lv
+\backslash
+]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+here 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+S
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+L
+\end_layout
+
+\end_inset
+
+ are positive constants and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+v
+\end_layout
+
+\end_inset
+
+ is voltage of the neuron.
+\end_layout
+
+\begin_layout Standard
+Solving this equation for 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+v
+\end_layout
+
+\end_inset
+
+ we get
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+[v= 
+\backslash
+frac{S}{L} +(v_o -
+\backslash
+frac{S}{L})exp(-Lt)
+\backslash
+]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+we see that the evolution is exponential with time constant 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$k=
+\backslash
+frac{1}{L}$
+\end_layout
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+In this model break few synapses and then begin the evolution.
+ We let all the neurons evolve till they reach a threshold value, once they
+ do, then as the integrated and fire model prdicts the value of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+V
+\end_layout
+
+\end_inset
+
+ becomes 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+0
+\end_layout
+
+\end_inset
+
+.
+ Since all the neurons are coupled(i.e they aall are connected to each other
+ with bidirectional synapses), pulse coupled to be precise, the firing neuron
+ sends a pulse to all the other neurons, this causes a discrete and instantaneou
+s change in their voltages.
+ Over a period of time these neurons seem to synchronize, that is they have
+ same voltages at all times.
+ 
+\end_layout
+
+\begin_layout Standard
+The neurons pass information to each other via synapses, these synapses
+ are bidirectional, that means that if we have two neurons then they both
+ can affect each other, if we break the synapse from first neuron to second
+ then first neuron can not affect the second neuron however the second neuron
+ will still affect the first neuron.We can break synapses between two neurons
+ in 2 ways, either both of them together or just 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+1
+\end_layout
+
+\end_inset
+
+ at a time.
+ We are more interested in breaking both the synapses and observing the
+ behavior of the network.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Results and analysis :
+\end_layout
+
+\begin_layout Section
+Relation between synchronization of a network of n neurons and synapses
+ in the network
+\end_layout
+
+\begin_layout Standard
+It can be shown that a network of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+n
+\end_layout
+
+\end_inset
+
+ neurons has a total of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$
+\backslash
+frac{n(n+1)}{2}$
+\end_layout
+
+\end_inset
+
+ synapses.
+ I chose different 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+n
+\end_layout
+
+\end_inset
+
+ and calculated the relationship between the synchronization of that network
+ with number of synapses present.
+ The basic idea is to keep breaking the synapses at random from a network
+ till we achieve a significant fall in the probability of synchronization
+ of a network.
+ For practical purposes I have defined the significant fall to be 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+0.1
+\end_layout
+
+\end_inset
+
+ drop in probability from 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+1
+\end_layout
+
+\end_inset
+
+.
+ The procedure for breaking synapses involves dividing the total number
+ of synapses in 40 parts and then calculate the probability for each of
+ the states.
+ Due to constraints like processing power and time, we start from a particular
+ fraction of synapses broken for each network, for most of the cases it
+ is 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+0.5
+\end_layout
+
+\end_inset
+
+, please note that I have ommitted the calculations for fractions lower
+ than this after making sure that the probability hovers very close to 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+1
+\end_layout
+
+\end_inset
+
+ for them, and since we are more interested in the critical fraction, we
+ don't really need to focus on lower fractions.
+ The simulations were done for 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+50
+\end_layout
+
+\end_inset
+
+ graphs and each of them had 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+10
+\end_layout
+
+\end_inset
+
+ different initial conditions.
+ The figures below show the characterstics of each network of neurons.
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "80page%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted35.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted36.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted37.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted38.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted39.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted40.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted41.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted42.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted43.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted44.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted45.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted46.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted47.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted48.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted49.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted50.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted51.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted52.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted53.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted54.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted55.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted56.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted57.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted58.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted59.png
+	scale 45
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pasted60.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted61.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The sensitivity of results on the number of graphs 
+\end_layout
+
+\begin_layout Standard
+As mentioned earlier the simulations for each neuron network was carried
+ for 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+50
+\end_layout
+
+\end_inset
+
+ graphs, however we can not be sure if the mentioned number of graphs will
+ be enough to achieve accurate results.
+ Hence, in this section we will compare the sensitivity of results on the
+ number of graphs, the comparision will be done between 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+50
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+200
+\end_layout
+
+\end_inset
+
+ graphs.
+ Figure 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+2.1
+\end_layout
+
+\end_inset
+
+ shows the comparision for 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+n=70
+\end_layout
+
+\end_inset
+
+ and figure 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+2.2
+\end_layout
+
+\end_inset
+
+ for 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+n=50
+\end_layout
+
+\end_inset
+
+.
+ We can conclude that there is not a significant difference in the results.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted28.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Plot shows probability of synchronization on y axis and fraction of remaining
+ synapses vs total synapses on x axis.
+ The network has 70 neurons.
+ Note that both the sets of data points are very close to each other, signifying
+ low sensitivity on number of graphs.
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted29.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Plot shows probability of synchronization on y axis and fraction of remaining
+ synapses vs total synapses on x axis.
+ The network has 50 neurons.
+ Note that both the sets of data points are very close to each other,except
+ at one point, signifying low sensitivity on number of graphs.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Critical fraction vs number of neurons
+\end_layout
+
+\begin_layout Standard
+We earlier observed that critical fraction, i.e.
+ the fraction of broken synapses vs total synapses at which there is sudden
+ drop in probability , is different for different number of neurons.
+ Figure 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+2.2
+\end_layout
+
+\end_inset
+
+ shows the plot of critical fraction vs number of neurons.
+ We can see that the critical fraction becomes saturated at 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+0.6
+\end_layout
+
+\end_inset
+
+ for bigger values of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+n
+\end_layout
+
+\end_inset
+
+.
+ The equation that fits the graph was found to be 
+\begin_inset Formula $f(x)=-1.165E-09x^{4}+7.601E-07x^{3}-0.15E-03x^{2}+0.014x+0.191$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename pasted34.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Plot of critical fraction vs Number of neurons in a network.
+ The saturation can be clearly observed as we increase the number of neurons.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Discussions
+\end_layout
+
+\begin_layout Standard
+We have seen that number of neurons in a network have an effect on the probabili
+ty of synchronization of that network, we have also discussed the behavior
+ of a network near critical fraction.
+ Note that the simulations had some constraints due to limited computation
+ power.
+ However, it has been shown that sensitivity of results on number of graphs
+ for each simulation is low.
+ 
+\end_layout
+
+\begin_layout Standard
+We have also seen that the critical fraction seems to saturate in the data
+ set.
+ This can have important implications in brain study.
+ Local synchronization of oscillatory neuronal behavior in cortical networks
+ plays a fundamental role in many aspects of perception and cognition,We
+ know that synaptic pruning happens in our brain, and it does not necessarily
+ effect our mental health, however there are some mental conditions which
+ lead to extreme loss in number of synapses.
+ We might be able to determine the safe amount of loss of synapses, and
+ predict the onset of some conditions.
+ 
+\end_layout
+
+\begin_layout Standard
+Furthur works may include studying a different model of a neuron and observing
+ the difference between the results, a good starting point will be studying
+ leaky integrated and fire model, wherein the input is not constant.
+ We can also study the characteristics of a graph which makes it more robust
+ than the graph with same number of connections but different structure,
+ we can calculate individual probability of synchronization for each such
+ graph( with some particular number of initial cases), for some particular
+ number of synapses in the network,and observe which of these graphs shows
+ most robustness.
+ The implication of such results can be very interesting and important.
+ 
+\end_layout
+
+\begin_layout Standard
+It must be noted that our results are heavily dependent on the computation
+ power we could use.
+ These results may be furthur explored and scrutinized by increasing the
+ time for simulation.
+ 
+\end_layout
+
+\begin_layout Chapter
+Appendix
+\end_layout
+
+\begin_layout Standard
+The simulations were done in c++, the program for simulation is attached
+ below.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#include<bits/stdc++.h> 
+\end_layout
+
+\begin_layout Plain Layout
+
+#include<ctime> 
+\end_layout
+
+\begin_layout Plain Layout
+
+#include<random> 
+\end_layout
+
+\begin_layout Plain Layout
+
+using namespace std;
+\end_layout
+
+\begin_layout Plain Layout
+
+const int n=35;    //number of neurons 
+\end_layout
+
+\begin_layout Plain Layout
+
+float S=1.000; 
+\end_layout
+
+\begin_layout Plain Layout
+
+float L=1.00; 
+\end_layout
+
+\begin_layout Plain Layout
+
+float h=0.002;    //time steps float 
+\end_layout
+
+\begin_layout Plain Layout
+
+T=1000.00; 
+\end_layout
+
+\begin_layout Plain Layout
+
+float thresh=0.80 // value above which the particle 
+\end_layout
+
+\begin_layout Plain Layout
+
+jumps assuming the particle will jump 
+\end_layout
+
+\begin_layout Plain Layout
+
+float excite=0.01;     //excitation in each particle due
+\end_layout
+
+\begin_layout Plain Layout
+
+to one particle crossing threshold value float error =0.001;
+\end_layout
+
+\begin_layout Plain Layout
+
+int arr[n+1][n+1];        //mapping array
+\end_layout
+
+\begin_layout Plain Layout
+
+void iterate(float pos[][2],float pos_ini[][2],
+\end_layout
+
+\begin_layout Plain Layout
+
+vector<vector<float > > &spike_time); 
+\end_layout
+
+\begin_layout Plain Layout
+
+int is_sync(float pos[][2],float pos_ini[][2],
+\end_layout
+
+\begin_layout Plain Layout
+
+int num,ofstream &myfile,vector<vector<float > > &spike_time);
+\end_layout
+
+\begin_layout Plain Layout
+
+void map_neuron(float pos[][2],float pos_ini[][2],
+\end_layout
+
+\begin_layout Plain Layout
+
+int num,ofstream& myfile1); 
+\end_layout
+
+\begin_layout Plain Layout
+
+void run(float pos[][2],float pos_ini[][2],ofstream &myfile,
+\end_layout
+
+\begin_layout Plain Layout
+
+vector<vector<float > > &spike_time); 
+\end_layout
+
+\begin_layout Plain Layout
+
+float time(float v,float v_o); 
+\end_layout
+
+\begin_layout Plain Layout
+
+void rungekutta(int i,float p[][2]);
+\end_layout
+
+\begin_layout Plain Layout
+
+void rungekutta(int i,float pos[][2])
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  float k1,k2,k3,k4,k5;
+\end_layout
+
+\begin_layout Plain Layout
+
+  float v=pos[i][0];  
+\end_layout
+
+\begin_layout Plain Layout
+
+  k1=h*(S-L*v);  
+\end_layout
+
+\begin_layout Plain Layout
+
+  k2=h*(S-L*(v+0.5*k1)); 
+\end_layout
+
+\begin_layout Plain Layout
+
+  k3=h*(S-L*(v+0.5*k2));  
+\end_layout
+
+\begin_layout Plain Layout
+
+  k4=h*(S-L*(v+k3));   
+\end_layout
+
+\begin_layout Plain Layout
+
+  pos[i][0]+=(1.0/6.0)*(k1+2*k2+2*k3+k4);
+\end_layout
+
+\begin_layout Plain Layout
+
+  pos[i][1]+=h;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+void iterate(float pos[][2],float pos_ini[][2],
+\end_layout
+
+\begin_layout Plain Layout
+
+vector<vector<float > > &spike_time) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	int L[n+1]={0}; 
+\end_layout
+
+\begin_layout Plain Layout
+
+	for(int i=0;i<n;i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+      rungekutta(i,pos);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}   
+\end_layout
+
+\begin_layout Plain Layout
+
+for(int i=0;i<n;i++)  
+\end_layout
+
+\begin_layout Plain Layout
+
+{     
+\end_layout
+
+\begin_layout Plain Layout
+
+if(pos[i][0]>=thresh)  
+\end_layout
+
+\begin_layout Plain Layout
+
+    L[i]=1;   }   
+\end_layout
+
+\begin_layout Plain Layout
+
+for(int i=0;i<n;i++)  
+\end_layout
+
+\begin_layout Plain Layout
+
+{     int cnt=0;  
+\end_layout
+
+\begin_layout Plain Layout
+
+  for(int j=0;j<n;j++) 
+\end_layout
+
+\begin_layout Plain Layout
+
+   {     
+\end_layout
+
+\begin_layout Plain Layout
+
+ if(i==j)  
+\end_layout
+
+\begin_layout Plain Layout
+
+    continue;    
+\end_layout
+
+\begin_layout Plain Layout
+
+  else       
+\end_layout
+
+\begin_layout Plain Layout
+
+{          
+\end_layout
+
+\begin_layout Plain Layout
+
+if(L[j]==1 && arr[i][j]==0)  
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+    	cnt++;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }      
+\end_layout
+
+\begin_layout Plain Layout
+
+}    
+\end_layout
+
+\begin_layout Plain Layout
+
+}      
+\end_layout
+
+\begin_layout Plain Layout
+
+if(pos[i][0]+cnt*excite>=thresh )  
+\end_layout
+
+\begin_layout Plain Layout
+
+      {        
+\end_layout
+
+\begin_layout Plain Layout
+
+     pos[i][0]=0.0;     
+\end_layout
+
+\begin_layout Plain Layout
+
+     spike_time[i].push_back(pos[i][1]);
+\end_layout
+
+\begin_layout Plain Layout
+
+      }       
+\end_layout
+
+\begin_layout Plain Layout
+
+else        
+\end_layout
+
+\begin_layout Plain Layout
+
+    { 
+\end_layout
+
+\begin_layout Plain Layout
+
+         pos[i][0]+=cnt*excite ;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }  
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+int is_sync(float pos[][2],float pos_ini[][2],
+\end_layout
+
+\begin_layout Plain Layout
+
+int num,ofstream &myfile,vector<vector<float > > &spike_time) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	run(pos,pos_ini,myfile,spike_time);  
+\end_layout
+
+\begin_layout Plain Layout
+
+	int count=0; 	
+\end_layout
+
+\begin_layout Plain Layout
+
+ for(int i=1;i<n;i++) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	  { 	    if(fabs(pos[i][0]-pos[0][0])>error) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	    { 	       
+\end_layout
+
+\begin_layout Plain Layout
+
+			count++; 	   
+\end_layout
+
+\begin_layout Plain Layout
+
+		} 	 
+\end_layout
+
+\begin_layout Plain Layout
+
+	  }
+\end_layout
+
+\begin_layout Plain Layout
+
+	    if(count==0) 	 
+\end_layout
+
+\begin_layout Plain Layout
+
+  	{ 	     
+\end_layout
+
+\begin_layout Plain Layout
+
+			return 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+	  }
+\end_layout
+
+\begin_layout Plain Layout
+
+	    else 
+\end_layout
+
+\begin_layout Plain Layout
+
+	    return 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+void map_neuron(float pos[][2],int num,ofstream &myfile1) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{   std::random_device rd;  
+\end_layout
+
+\begin_layout Plain Layout
+
+   std::mt19937 gen(rd());
+\end_layout
+
+\begin_layout Plain Layout
+
+  std::uniform_int_distribution<> dis(0,(n-1));
+\end_layout
+
+\begin_layout Plain Layout
+
+ for(int i=0;i<n;i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+ 	for(int j=0;j<n;j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+ 		arr[i][j]=0;
+\end_layout
+
+\begin_layout Plain Layout
+
+ }
+\end_layout
+
+\begin_layout Plain Layout
+
+  for(int i=0;i<num;i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+   while(1)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+      int v1= dis(gen);
+\end_layout
+
+\begin_layout Plain Layout
+
+      int v2= dis(gen);
+\end_layout
+
+\begin_layout Plain Layout
+
+      if(arr[v1][v2]==1)
+\end_layout
+
+\begin_layout Plain Layout
+
+        continue;
+\end_layout
+
+\begin_layout Plain Layout
+
+      if(v1!=v2)
+\end_layout
+
+\begin_layout Plain Layout
+
+      { 
+\end_layout
+
+\begin_layout Plain Layout
+
+       arr[v1][v2]=1; 
+\end_layout
+
+\begin_layout Plain Layout
+
+      arr[v2][v1]=1; //condition for second case
+\end_layout
+
+\begin_layout Plain Layout
+
+        break;
+\end_layout
+
+\begin_layout Plain Layout
+
+      }
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  for(int i=0;i<n;i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    for(int j=0;j<n;j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+      char s=arr[i][j]+'0'; 
+\end_layout
+
+\begin_layout Plain Layout
+
+     myfile1<<s<<" ";
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    myfile1<<"
+\backslash
+n";
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  myfile1<<"
+\backslash
+n";
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+void run(float pos[][2],float pos_ini[][2],ofstream  &myfile,
+\end_layout
+
+\begin_layout Plain Layout
+
+vector<vector<float > > &spike_time)
+\end_layout
+
+\begin_layout Plain Layout
+
+{   int count=0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int times=T/h;
+\end_layout
+
+\begin_layout Plain Layout
+
+  int i=0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  while(times--)
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    iterate(pos,pos_ini,spike_time);
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+void generate_rand(float pos[][2],float pos_ini[][2]) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	for(int i=0;i<n;i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    pos[i][0]= static_cast <float> (rand()) / 
+\end_layout
+
+\begin_layout Plain Layout
+
+    (static_cast <float> (RAND_MAX/thresh));
+\end_layout
+
+\begin_layout Plain Layout
+
+    pos[i][1]= 0.0;
+\end_layout
+
+\begin_layout Plain Layout
+
+    pos_ini[i][0]=pos[i][0];
+\end_layout
+
+\begin_layout Plain Layout
+
+    pos_ini[i][1]=0.0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  } 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+int main()
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  	float pos[201][2];
+\end_layout
+
+\begin_layout Plain Layout
+
+    float pos_ini[201][2];
+\end_layout
+
+\begin_layout Plain Layout
+
+    ofstream myfile,myfile1,spike;
+\end_layout
+
+\begin_layout Plain Layout
+
+    myfile.open("endpositions.txt");
+\end_layout
+
+\begin_layout Plain Layout
+
+    myfile1.open("map.txt");
+\end_layout
+
+\begin_layout Plain Layout
+
+    spike.open("spike_time.txt");
+\end_layout
+
+\begin_layout Plain Layout
+
+    int seed;
+\end_layout
+
+\begin_layout Plain Layout
+
+    cin>>seed;
+\end_layout
+
+\begin_layout Plain Layout
+
+    srand(seed); 
+\end_layout
+
+\begin_layout Plain Layout
+
+   
+\end_layout
+
+\begin_layout Plain Layout
+
+    int k=0;
+\end_layout
+
+\begin_layout Plain Layout
+
+    int incre= (n*(n-1))/80;
+\end_layout
+
+\begin_layout Plain Layout
+
+   
+\end_layout
+
+\begin_layout Plain Layout
+
+    int N1=50;           // no of graphs generated
+\end_layout
+
+\begin_layout Plain Layout
+
+    int N2=10;
+\end_layout
+
+\begin_layout Plain Layout
+
+    myfile1<<"neurons: "<<to_string(n);
+\end_layout
+
+\begin_layout Plain Layout
+
+    myfile1<<"
+\backslash
+n";
+\end_layout
+
+\begin_layout Plain Layout
+
+    spike<<"neurons: "<<to_string(n);
+\end_layout
+
+\begin_layout Plain Layout
+
+    spike<<"
+\backslash
+n";
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+   int start=(n*(n-1)*50)/200;
+\end_layout
+
+\begin_layout Plain Layout
+
+for(int i1=start;2*i1<=(n*(n-1));i1+=incre)
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+      float p=0.0;
+\end_layout
+
+\begin_layout Plain Layout
+
+      int sum=0;
+\end_layout
+
+\begin_layout Plain Layout
+
+      myfile1<<"Synapses broken: "<<to_string(i1);
+\end_layout
+
+\begin_layout Plain Layout
+
+      myfile1<<"
+\backslash
+n";
+\end_layout
+
+\begin_layout Plain Layout
+
+      spike<<"Synapses broken: "<<to_string(i1);
+\end_layout
+
+\begin_layout Plain Layout
+
+      spike<<"
+\backslash
+n";
+\end_layout
+
+\begin_layout Plain Layout
+
+    for(int i=0;i<N1;i++) 
+\end_layout
+
+\begin_layout Plain Layout
+
+         {
+\end_layout
+
+\begin_layout Plain Layout
+
+            map_neuron(pos,i1,myfile1);
+\end_layout
+
+\begin_layout Plain Layout
+
+            for(int j=0;j<N2;j++)
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+              vector<vector<float > > spike_time;
+\end_layout
+
+\begin_layout Plain Layout
+
+              for(int counter=0;counter<n;counter++)
+\end_layout
+
+\begin_layout Plain Layout
+
+              { 
+\end_layout
+
+\begin_layout Plain Layout
+
+               vector<float > v;
+\end_layout
+
+\begin_layout Plain Layout
+
+                spike_time.push_back(v);
+\end_layout
+
+\begin_layout Plain Layout
+
+              }
+\end_layout
+
+\begin_layout Plain Layout
+
+              generate_rand(pos,pos_ini);
+\end_layout
+
+\begin_layout Plain Layout
+
+              sum+=is_sync(pos,pos_ini,i1,myfile,spike_time);
+\end_layout
+
+\begin_layout Plain Layout
+
+              int spikeI=spike_time[0].size();
+\end_layout
+
+\begin_layout Plain Layout
+
+              if(spikeI<10)
+\end_layout
+
+\begin_layout Plain Layout
+
+              {
+\end_layout
+
+\begin_layout Plain Layout
+
+                for(int ii1=0;ii1<n;ii1++)
+\end_layout
+
+\begin_layout Plain Layout
+
+                {
+\end_layout
+
+\begin_layout Plain Layout
+
+                  for(int jj1=0;jj1<spikeI;jj1++)
+\end_layout
+
+\begin_layout Plain Layout
+
+                  {
+\end_layout
+
+\begin_layout Plain Layout
+
+                    spike<<spike_time[ii1][jj1]<<" ";
+\end_layout
+
+\begin_layout Plain Layout
+
+                  }
+\end_layout
+
+\begin_layout Plain Layout
+
+                  spike<<"
+\backslash
+n";
+\end_layout
+
+\begin_layout Plain Layout
+
+                }
+\end_layout
+
+\begin_layout Plain Layout
+
+              }
+\end_layout
+
+\begin_layout Plain Layout
+
+              else 
+\end_layout
+
+\begin_layout Plain Layout
+
+             {
+\end_layout
+
+\begin_layout Plain Layout
+
+                for(int ii1=0;ii1<n;ii1++)
+\end_layout
+
+\begin_layout Plain Layout
+
+                { 
+\end_layout
+
+\begin_layout Plain Layout
+
+                 for(int jj1=spikeI-10;jj1<spikeI;jj1++)
+\end_layout
+
+\begin_layout Plain Layout
+
+                  {
+\end_layout
+
+\begin_layout Plain Layout
+
+                    spike<<spike_time[ii1][jj1]<<" ";
+\end_layout
+
+\begin_layout Plain Layout
+
+                  } 
+\end_layout
+
+\begin_layout Plain Layout
+
+                 spike<<"
+\backslash
+n";
+\end_layout
+
+\begin_layout Plain Layout
+
+                }
+\end_layout
+
+\begin_layout Plain Layout
+
+              } 
+\end_layout
+
+\begin_layout Plain Layout
+
+             spike<<"
+\backslash
+n";
+\end_layout
+
+\begin_layout Plain Layout
+
+            }
+\end_layout
+
+\begin_layout Plain Layout
+
+          } 
+\end_layout
+
+\begin_layout Plain Layout
+
+        float fraction = (float)(2*i1)/(n*(n-1));
+\end_layout
+
+\begin_layout Plain Layout
+
+           p= (float)sum/(N1*N2); 
+\end_layout
+
+\begin_layout Plain Layout
+
+          cout<<fraction<<" "<<p<<endl; 
+\end_layout
+
+\begin_layout Plain Layout
+
+         if(fabs(1-p)>0.1)
+\end_layout
+
+\begin_layout Plain Layout
+
+          {
+\end_layout
+
+\begin_layout Plain Layout
+
+            //cout<<n<<" "<<fraction;
+\end_layout
+
+\begin_layout Plain Layout
+
+            break;
+\end_layout
+
+\begin_layout Plain Layout
+
+          }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+myfile.close();
+\end_layout
+
+\begin_layout Plain Layout
+
+myfile1.close();
+\end_layout
+
+\begin_layout Plain Layout
+
+spike.close();
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-2"
+
+\end_inset
+
+ Renato E.
+ Mirollo; Steven H.
+ Strogatz,
+\shape italic
+Synchronization of Pulse-Coupled Biological Oscillators.
+ SIAM Journal on Applied Mathematics, Vol.
+ 50, No.
+ 6.
+ (Dec., 1990), pp.
+ 1645-1662.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+Izhikevich, Eugene M.
+ Dynamical Systems in Neuroscience: the Geometry of Excitability and Bursting.
+ MIT Press, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-2"
+
+\end_inset
+
+
+\shape italic
+Strogatz Steven S.,Nonlinear Dynamics and Chaos.
+ Perseus Books, 1994.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-3"
+
+\end_inset
+
+www.scholarpedia.org/article/Coherent_activity_in_excitatory_pulse-coupled_network
+s.
+\end_layout
+
+\end_body
+\end_document
